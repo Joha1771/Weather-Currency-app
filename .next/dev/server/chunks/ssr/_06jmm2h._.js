@@ -47,105 +47,105 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 function Footer() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("footer", {
         style: {
-            borderTop: '1px solid rgba(0, 163, 255, 0.12)',
-            padding: '2rem 1.5rem',
-            marginTop: '4rem'
+            borderTop: "1px solid rgba(0, 163, 255, 0.12)",
+            padding: "2rem 1.5rem",
+            marginTop: "4rem"
         },
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             style: {
-                maxWidth: '1280px',
-                margin: '0 auto',
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                flexWrap: 'wrap',
-                gap: '1rem'
+                maxWidth: "1280px",
+                margin: "0 auto",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                flexWrap: "wrap",
+                gap: "1rem"
             },
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     style: {
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '10px'
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "10px"
                     },
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             style: {
-                                width: '30px',
-                                height: '30px',
-                                borderRadius: '8px',
-                                background: 'linear-gradient(135deg, #00a3ff, #00e5ff)',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                fontSize: '14px'
+                                width: "30px",
+                                height: "30px",
+                                borderRadius: "8px",
+                                background: "linear-gradient(135deg, #00a3ff, #00e5ff)",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                fontSize: "14px"
                             },
                             children: "🌐"
                         }, void 0, false, {
                             fileName: "[project]/src/components/Footer.tsx",
-                            lineNumber: 10,
+                            lineNumber: 22,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                             style: {
                                 fontWeight: 700,
-                                background: 'linear-gradient(135deg, #00a3ff, #00e5ff)',
-                                WebkitBackgroundClip: 'text',
-                                WebkitTextFillColor: 'transparent'
+                                background: "linear-gradient(135deg, #00a3ff, #00e5ff)",
+                                WebkitBackgroundClip: "text",
+                                WebkitTextFillColor: "transparent"
                             },
                             children: "MeteoX"
                         }, void 0, false, {
                             fileName: "[project]/src/components/Footer.tsx",
-                            lineNumber: 11,
+                            lineNumber: 36,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/Footer.tsx",
-                    lineNumber: 9,
+                    lineNumber: 21,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     style: {
-                        display: 'flex',
-                        gap: '2rem',
-                        alignItems: 'center'
+                        display: "flex",
+                        gap: "2rem",
+                        alignItems: "center"
                     },
                     children: [
-                        'Open-Meteo API',
-                        'Exchange Rate API',
-                        'Next.js 14'
+                        "Open-Meteo API",
+                        "Exchange Rate API",
+                        "Next.js 14"
                     ].map((t)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                             style: {
-                                fontSize: '0.8rem',
-                                color: '#4a6580'
+                                fontSize: "0.8rem",
+                                color: "#4a6580"
                             },
                             children: t
                         }, t, false, {
                             fileName: "[project]/src/components/Footer.tsx",
-                            lineNumber: 15,
+                            lineNumber: 49,
                             columnNumber: 13
                         }, this))
                 }, void 0, false, {
                     fileName: "[project]/src/components/Footer.tsx",
-                    lineNumber: 13,
+                    lineNumber: 47,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                     style: {
-                        fontSize: '0.8rem',
-                        color: '#4a6580'
+                        fontSize: "0.8rem",
+                        color: "#4a6580"
                     },
                     children: "© 2024 MeteoX — Barcha huquqlar himoyalangan"
                 }, void 0, false, {
                     fileName: "[project]/src/components/Footer.tsx",
-                    lineNumber: 18,
+                    lineNumber: 54,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/components/Footer.tsx",
-            lineNumber: 8,
+            lineNumber: 10,
             columnNumber: 7
         }, this)
     }, void 0, false, {
