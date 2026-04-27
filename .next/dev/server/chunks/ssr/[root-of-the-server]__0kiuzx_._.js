@@ -1,0 +1,247 @@
+module.exports = [
+"[externals]/next/dist/shared/lib/no-fallback-error.external.js [external] (next/dist/shared/lib/no-fallback-error.external.js, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("next/dist/shared/lib/no-fallback-error.external.js", () => require("next/dist/shared/lib/no-fallback-error.external.js"));
+
+module.exports = mod;
+}),
+"[project]/src/app/favicon.ico (static in ecmascript, tag client)", ((__turbopack_context__) => {
+
+__turbopack_context__.v("/_next/static/media/favicon.0x3dzn~oxb6tn.ico" + (globalThis["NEXT_CLIENT_ASSET_SUFFIX"] || ''));}),
+"[project]/src/app/favicon.ico.mjs { IMAGE => \"[project]/src/app/favicon.ico (static in ecmascript, tag client)\" } [app-rsc] (structured image object, ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$favicon$2e$ico__$28$static__in__ecmascript$2c$__tag__client$29$__ = __turbopack_context__.i("[project]/src/app/favicon.ico (static in ecmascript, tag client)");
+;
+const __TURBOPACK__default__export__ = {
+    src: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$favicon$2e$ico__$28$static__in__ecmascript$2c$__tag__client$29$__["default"],
+    width: 256,
+    height: 256
+};
+}),
+"[project]/src/lib/weather.ts [app-rsc] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "fetchWeather",
+    ()=>fetchWeather
+]);
+const WMO_CODES = {
+    0: {
+        label: 'Tiniq',
+        icon: '☀️'
+    },
+    1: {
+        label: 'Asosan tiniq',
+        icon: '🌤️'
+    },
+    2: {
+        label: 'Qisman bulutli',
+        icon: '⛅'
+    },
+    3: {
+        label: 'Bulutli',
+        icon: '☁️'
+    },
+    45: {
+        label: 'Tumanli',
+        icon: '🌫️'
+    },
+    48: {
+        label: 'Qirov tumani',
+        icon: '🌫️'
+    },
+    51: {
+        label: 'Yengil shivala',
+        icon: '🌦️'
+    },
+    61: {
+        label: 'Yomg\'ir',
+        icon: '🌧️'
+    },
+    63: {
+        label: 'Kuchli yomg\'ir',
+        icon: '🌧️'
+    },
+    65: {
+        label: 'Juda kuchli yomg\'ir',
+        icon: '⛈️'
+    },
+    71: {
+        label: 'Qor',
+        icon: '❄️'
+    },
+    80: {
+        label: 'Yomg\'ir dushlari',
+        icon: '🌦️'
+    },
+    95: {
+        label: 'Momaqaldiroq',
+        icon: '⛈️'
+    }
+};
+async function fetchWeather(lat, lon, city) {
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,pressure_msl,visibility,uv_index&hourly=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=7`;
+    const res = await fetch(url, {
+        next: {
+            revalidate: 300
+        }
+    });
+    if (!res.ok) throw new Error('Weather fetch failed');
+    const d = await res.json();
+    const code = d.current.weather_code;
+    const meta = WMO_CODES[code] || {
+        label: 'Noma\'lum',
+        icon: '🌡️'
+    };
+    const now = new Date();
+    const hourly = d.hourly.time.slice(0, 24).map((t, i)=>({
+            time: new Date(t).getHours() + ':00',
+            temp: Math.round(d.hourly.temperature_2m[i]),
+            icon: (WMO_CODES[d.hourly.weather_code[i]] || {
+                icon: '☀️'
+            }).icon
+        })).filter((_, i)=>i % 3 === 0);
+    const days = [
+        'Yak',
+        'Du',
+        'Se',
+        'Ch',
+        'Pa',
+        'Ju',
+        'Sh'
+    ];
+    const daily = d.daily.time.map((t, i)=>{
+        const date = new Date(t);
+        return {
+            day: i === 0 ? 'Bugun' : i === 1 ? 'Ertaga' : days[date.getDay()],
+            min: Math.round(d.daily.temperature_2m_min[i]),
+            max: Math.round(d.daily.temperature_2m_max[i]),
+            icon: (WMO_CODES[d.daily.weather_code[i]] || {
+                icon: '☀️'
+            }).icon,
+            condition: (WMO_CODES[d.daily.weather_code[i]] || {
+                label: 'Noma\'lum'
+            }).label
+        };
+    });
+    return {
+        city,
+        temp: Math.round(d.current.temperature_2m),
+        feelsLike: Math.round(d.current.apparent_temperature),
+        humidity: d.current.relative_humidity_2m,
+        windSpeed: Math.round(d.current.wind_speed_10m),
+        condition: meta.label,
+        icon: meta.icon,
+        uvIndex: Math.round(d.current.uv_index || 0),
+        visibility: Math.round((d.current.visibility || 10000) / 1000),
+        pressure: Math.round(d.current.pressure_msl || 1013),
+        hourly,
+        daily
+    };
+}
+}),
+"[project]/src/app/weather/WeatherClient.tsx [app-rsc] (client reference proxy) <module evaluation>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+// This file is generated by next-core EcmascriptClientReferenceModule.
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$server$2d$dom$2d$turbopack$2d$server$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/rsc/react-server-dom-turbopack-server.js [app-rsc] (ecmascript)");
+;
+const __TURBOPACK__default__export__ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$server$2d$dom$2d$turbopack$2d$server$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerClientReference"])(function() {
+    throw new Error("Attempted to call the default export of [project]/src/app/weather/WeatherClient.tsx <module evaluation> from the server, but it's on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.");
+}, "[project]/src/app/weather/WeatherClient.tsx <module evaluation>", "default");
+}),
+"[project]/src/app/weather/WeatherClient.tsx [app-rsc] (client reference proxy)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>__TURBOPACK__default__export__
+]);
+// This file is generated by next-core EcmascriptClientReferenceModule.
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$server$2d$dom$2d$turbopack$2d$server$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/rsc/react-server-dom-turbopack-server.js [app-rsc] (ecmascript)");
+;
+const __TURBOPACK__default__export__ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$server$2d$dom$2d$turbopack$2d$server$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerClientReference"])(function() {
+    throw new Error("Attempted to call the default export of [project]/src/app/weather/WeatherClient.tsx from the server, but it's on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.");
+}, "[project]/src/app/weather/WeatherClient.tsx", "default");
+}),
+"[project]/src/app/weather/WeatherClient.tsx [app-rsc] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$weather$2f$WeatherClient$2e$tsx__$5b$app$2d$rsc$5d$__$28$client__reference__proxy$29$__$3c$module__evaluation$3e$__ = __turbopack_context__.i("[project]/src/app/weather/WeatherClient.tsx [app-rsc] (client reference proxy) <module evaluation>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$weather$2f$WeatherClient$2e$tsx__$5b$app$2d$rsc$5d$__$28$client__reference__proxy$29$__ = __turbopack_context__.i("[project]/src/app/weather/WeatherClient.tsx [app-rsc] (client reference proxy)");
+;
+__turbopack_context__.n(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$weather$2f$WeatherClient$2e$tsx__$5b$app$2d$rsc$5d$__$28$client__reference__proxy$29$__);
+}),
+"[project]/src/app/weather/page.tsx [app-rsc] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>WeatherPage,
+    "revalidate",
+    ()=>revalidate
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/rsc/react-jsx-dev-runtime.js [app-rsc] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$weather$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/weather.ts [app-rsc] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$weather$2f$WeatherClient$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/app/weather/WeatherClient.tsx [app-rsc] (ecmascript)");
+;
+;
+;
+const revalidate = 300;
+const CITIES = [
+    {
+        name: "Toshkent",
+        lat: 41.2995,
+        lon: 69.2401,
+        flag: "🇺🇿"
+    },
+    {
+        name: "Samarqand",
+        lat: 39.6542,
+        lon: 66.9597,
+        flag: "🇺🇿"
+    },
+    {
+        name: "Buxoro",
+        lat: 39.7747,
+        lon: 64.4286,
+        flag: "🇺🇿"
+    },
+    {
+        name: "Namangan",
+        lat: 41.0011,
+        lon: 71.6725,
+        flag: "🇺🇿"
+    }
+];
+async function WeatherPage() {
+    const weatherData = await Promise.allSettled(CITIES.map((c)=>(0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$weather$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["fetchWeather"])(c.lat, c.lon, c.name)));
+    const cities = weatherData.map((r, i)=>({
+            ...CITIES[i],
+            data: r.status === "fulfilled" ? r.value : null
+        }));
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$weather$2f$WeatherClient$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
+        cities: cities
+    }, void 0, false, {
+        fileName: "[project]/src/app/weather/page.tsx",
+        lineNumber: 23,
+        columnNumber: 10
+    }, this);
+}
+}),
+"[project]/src/app/weather/page.tsx [app-rsc] (ecmascript, Next.js Server Component)", ((__turbopack_context__) => {
+
+__turbopack_context__.n(__turbopack_context__.i("[project]/src/app/weather/page.tsx [app-rsc] (ecmascript)"));
+}),
+];
+
+//# sourceMappingURL=%5Broot-of-the-server%5D__0kiuzx_._.js.map
